@@ -33,7 +33,7 @@ public class KeypadMessengerMidlet extends MIDlet implements CommandListener, Ru
 
     // ── State ──────────────────────────────────────────────────────────────────
     private String  baseUrl   = "http://messengerforkeypad.onrender.com";
-    private String  deviceId  = "dev";
+    private String  deviceId  = "DevilxG";
     private long    since     = 0;
 
     // ── Persistent storage record IDs ──────────────────────────────────────────

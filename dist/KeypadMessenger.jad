@@ -6,4 +6,4 @@ MIDlet-Icon: /icon.png
 MicroEdition-Configuration: CLDC-1.1
 MicroEdition-Profile: MIDP-2.0
 MIDlet-Jar-URL: KeypadMessenger.jar
-MIDlet-Jar-Size: 13603
+MIDlet-Jar-Size: 13595
