@@ -1,0 +1,9 @@
+MIDlet-1: KeypadMessenger, /icon.png, KeypadMessengerMidlet
+MIDlet-Name: KeypadMessenger
+MIDlet-Vendor: Developer
+MIDlet-Version: 1.0
+MIDlet-Icon: /icon.png
+MicroEdition-Configuration: CLDC-1.1
+MicroEdition-Profile: MIDP-2.0
+MIDlet-Jar-URL: KeypadMessenger.jar
+MIDlet-Jar-Size: 13594
