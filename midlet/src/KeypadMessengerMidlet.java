@@ -32,8 +32,8 @@ public class KeypadMessengerMidlet extends MIDlet implements CommandListener, Ru
     private Command cmdClear  = new Command("Clear",   Command.SCREEN, 3);
 
     // ── State ──────────────────────────────────────────────────────────────────
-    private String  baseUrl   = "http://URL.lhr.life";
-    private String  deviceId  = "KP1001";
+    private String  baseUrl   = "http://messengerforkeypad.onrender.com";
+    private String  deviceId  = "dev";
     private long    since     = 0;
 
     // ── Persistent storage record IDs ──────────────────────────────────────────
