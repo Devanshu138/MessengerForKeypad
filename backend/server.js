@@ -72,7 +72,18 @@ app.post('/telegram/webhook', (req, res) => {
     const msg = update.message;
     if (msg && msg.text) {
         const fromAlias = (msg.from && (msg.from.username || msg.from.first_name)) || 'tg';
-        const deviceId = 'KP1001'; // TODO: map by conversation/user.
+        const chatId = String(msg.chat.id);
+        
+        // Reverse-map chat ID to the corresponding alias/device ID
+        let matchedDevice = null;
+        for (var alias in aliasMap) {
+            if (aliasMap[alias] === chatId) {
+                matchedDevice = alias;
+                break;
+            }
+        }
+        
+        const deviceId = matchedDevice || 'KP1001';
         pushInbox(deviceId, {
             id: String(msg.message_id),
             fromAlias,
@@ -95,4 +106,14 @@ app.get('/inbox', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Bridge server listening on :${PORT}`);
     console.log('Configured aliases:', Object.keys(aliasMap).length);
+    
+    // Auto-setup webhook on Render startup
+    const EXTERNAL_URL = process.env.RENDER_EXTERNAL_URL;
+    if (EXTERNAL_URL && TELEGRAM_BOT_TOKEN) {
+        const webhookUrl = `${EXTERNAL_URL}/telegram/webhook`;
+        fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/setWebhook?url=${webhookUrl}`)
+            .then(r => r.json())
+            .then(d => console.log('Telegram auto-webhook registered:', JSON.stringify(d)))
+            .catch(e => console.error('Telegram auto-webhook registration failed:', e.message));
+    }
 });
